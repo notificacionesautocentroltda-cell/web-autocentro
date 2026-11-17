@@ -1,0 +1,23 @@
+{
+	email servicioalcliente@autocentroltda.com.co
+}
+
+web.autocentroltda.com.co {
+	root * /repo/site
+	encode zstd gzip
+	file_server
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options SAMEORIGIN
+	}
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=604800"
+}
+
+# Acceso por IP para pruebas antes del cambio de DNS
+:80 {
+	root * /repo/site
+	encode zstd gzip
+	file_server
+}
